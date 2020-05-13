@@ -56,7 +56,12 @@
 
   function getInitInput () {
     let querystring = location.search.slice(1)
-    return (querystring ? decodeURIComponent(/(?:^|&)s=(.+)(?:$|&)/.exec(querystring)[1]) : null) || ''
+    if (!querystring) return ''
+
+    let match = /(?:^|&)s=(.+?)(?:$|&)/.exec(querystring)
+    if (!match) return ''
+
+    return decodeURIComponent(match[1])
   }
 
   export default {
