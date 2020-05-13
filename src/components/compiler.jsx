@@ -1,5 +1,3 @@
-import {h} from 'vue'
-
 export function tokenize (raw) {
   let i = 0
   let tokens = []
@@ -93,7 +91,7 @@ export function compile (raw) {
       return node
     } else {
       const [type, code, content] = node
-      return h('span', {class: 'mc-' + code[1]}, transformArray(content))
+      return <span class={'mc-' + code[1]}>{ transformArray(content) }</span>
     }
   })
   return transformArray(ast)
