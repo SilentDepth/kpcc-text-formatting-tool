@@ -5,9 +5,10 @@
     </header>
     <div class="mx-10 text-lg bg-white rounded shadow overflow-hidden">
       <p class="p-5 bg-gray-700 mc-f" style="min-height: 1em; box-sizing: content-box;">
-        <component :is="() => compile(input)" />
+        <span v-if="!input" class="text-gray-400">Displays formatted text here</span>
+        <component v-else :is="() => compile(input)" />
       </p>
-      <input v-model="input" type="text" class="block w-full p-5 font-mono">
+      <input v-model="input" type="text" placeholder="Type raw text here" class="block w-full p-5 font-mono">
     </div>
     <div data-section="code-hints" class="self-center mt-10 flex">
       <section class="flex-grow flex-shrink">
@@ -49,16 +50,27 @@
 </template>
 
 <script>
-  import {ref, version} from 'vue'
+  import {ref, version, watch} from 'vue'
 
   import compile from './components/compiler'
+
+  function getInitInput () {
+    let querystring = location.search.slice(1)
+    return (querystring ? decodeURIComponent(/(?:^|&)s=(.+)(?:$|&)/.exec(querystring)[1]) : null) || ''
+  }
 
   export default {
     name: 'App',
 
     setup () {
+      let input = ref(decodeURIComponent(getInitInput()))
+
+      watch(input, input => {
+        history.replaceState(null, null, '?s=' + encodeURIComponent(input))
+      })
+
       return {
-        input: ref('&c&l孤&6帆&e&n远&a影&b碧&9&o空&d尽 &4&m唯&6见&e&l&m&n&o樱&2华&3天&1&m际&5流'),
+        input,
         compile,
 
         version,
