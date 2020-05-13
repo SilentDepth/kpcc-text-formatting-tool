@@ -13,7 +13,7 @@
     <div data-section="code-hints" class="self-center mt-10 flex">
       <section class="flex-grow flex-shrink">
         <h2>Text Color</h2>
-        <div class="grid grid-flow-col grid-rows-4 row-gap-3 col-gap-4">
+        <div class="grid grid-flow-col grid-rows-6 row-gap-3 col-gap-5">
           <p><code>&0</code><span class="mc-0">black</span></p>
           <p><code>&1</code><span class="mc-1">dark blue</span></p>
           <p><code>&2</code><span class="mc-2">dark green</span></p>
@@ -32,13 +32,14 @@
           <p><code>&f</code><span class="mc-f">white</span></p>
         </div>
       </section>
-      <section class="ml-4 flex-grow flex-shrink">
+      <section class="ml-5 flex-grow flex-shrink">
         <h2>Font Style</h2>
         <div class="space-y-3">
           <p><code>&l</code><span class="mc-l">bold</span></p>
           <p><code>&m</code><span class="mc-m">strikethrough</span></p>
           <p><code>&n</code><span class="mc-n">underline</span></p>
           <p><code>&o</code><span class="mc-o">italic</span></p>
+          <p><code>&r</code><span>reset</span></p>
         </div>
       </section>
     </div>
